@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="description" content="%%description%%"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+        <title>%%title%%</title>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+       
+        <style>
+
+        /* --------------------------------------------------------------
+            FORM STYLES
+        ----------------------------------------------------------------- */
+
+            /* Border-box box model FTW! */
+            #pardot-form,
+            #pardot-form *,
+            #pardot-form *:before,
+            #pardot-form *:after {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            /* Override form margin and padding set in the default stylesheet. Inherit font and color from page. */
+            #pardot-form {
+                margin: 0;
+                padding: 0;
+                font: inherit;
+                color: inherit;
+            }
+
+            /* Override form field wrapper margin and padding set in the default stylesheet. */
+            #pardot-form .form-field,
+            #pardot-form .submit {
+                margin: 15px 0 15px 0;
+                padding: 0;
+            }
+
+            /* Remove top margin from first from field wrapper. */
+            #pardot-form .form-field:first-child {
+                margin-top: 0;
+            }
+
+            /* Set default input style. */
+            #pardot-form input {
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                box-sizing: border-box;
+                color: #2c3e50;
+                font-size: 14px;
+                padding: 7px 15px;
+                width: 100%;
+            }
+
+            /* When labels are not floated left, set width on text inputs, textareas, and selects to 100%. */
+            #pardot-form input.text,
+            #pardot-form input.date,
+            #pardot-form textarea,
+            #pardot-form select {
+                width: 100%;
+                font-family: inherit;
+                color: inherit;
+            }
+
+            /* When labels are floated left, set width on field labels to a percentage of available width. In browsers that support calc(), use static label width instead and the form field will consume the remaining width. */
+            #pardot-form.label-left .field-label {
+                width: 35%;
+                width: calc(115px);
+            }
+
+            /* When labels are floated left, set width on text inputs, textareas, and selects to a percentage. In supported browsers, set width to 100% minus the width of the label instead. */
+            #pardot-form.label-left input.text,
+            #pardot-form.label-left input.date,
+            #pardot-form.label-left textarea,
+            #pardot-form.label-left select {
+                width: 65%;
+                width: calc(100% - 115px);
+            }
+
+            /* When labels are floated left, indent supporting form elements by the same amount as the field label. */
+            #pardot-form.label-left span.value,
+            #pardot-form.label-left .description,
+            #pardot-form.label-left .no-label > *,
+            #pardot-form.label-left .submit,
+            #pardot-form.label-left .error.no-label {
+                margin-left: 35%;
+                margin-left: calc(115px);
+            }
+
+            /* Remove unnecessary left padding on required radio/checkbox field labels when label alignment is set to above and the required symbol is set to default in form styling options. */
+            #pardot-form label.inline {
+                padding-left: 0;
+            }
+
+            /* Backup styles in case padding is added to text inputs. */
+            #pardot-form input.date {
+                padding-left: 20px;
+                background-position: left center;
+            }
+
+            #pardot-form .submit input {
+                background-color: #f36d10;
+                color: #fff;
+            }
+
+        /* --------------------------------------------------------------
+            BASE
+        ----------------------------------------------------------------- */
+
+            /* Set the base font */
+            body {
+                color: #000000;
+                font-family: Helvetica,serif;
+                line-height: 27px;
+                font-size: 14px;
+                overflow-x: hidden;
+            }
+
+            /* Set heading fonts */
+            h1 {   color: #000000;  text-shadow: 1px 1px #000000; }
+            h2 {   color: #000000;}
+            h3 {   font-size:20px;  color: #000000; }
+            h4 {   color: #000000;}
+            
+            .bigorangetitle{color: #f7901e; font-size:60px; text-shadow: none; font-weight: 600; margin-top: -15px;}
+            
+            .beforeheader{ height: 80px; background-color: #ffffff; color:#000000; padding: 10px; 15px;}
+            .hero-section h1{font-size: 70px; color: #ffffff; line-height: 1.2;}
+            .hero-section h3 {font-size: 30px; line-height: 38px; color: #fff; opacity: .7; font-weight: 400; }
+            
+
+            /* Set default background color */
+            .bgcolour { background-color: #023b5e; }
+
+            .headerwrapper{position: relative;}
+            
+            .headerwrapper:after { content: ""; display: table; clear: both; }
+            
+            .hero-section{ -webkit-background-size: auto 100%; 
+            				-moz-background-size: auto 100%; 
+                            -o-background-size: auto 100%; 
+                          
+                            background-repeat:no-repeat;  
+                            position: relative;
+                          
+                            background-position: center center !important;
+                            background-repeat: no-repeat !important;
+                            background-size: auto 100% !important;
+                           
+            }
+            
+            .underheader{  background-color: rgba(255, 255, 255, 0.9); margin-top: -80px; border-bottom: 3px solid #88c540;}
+            
+            .logoplace{ margin-top: 25px; }
+            
+            .page-header{height: 500px; padding-top:100px; border-bottom: none;}
+            
+            .pagetitles{margin-top: 10px;}
+            
+            .left-bootm-radius {
+                position: absolute;
+                width: 0;
+                right: 50%;
+                height: 0;
+                bottom: 0px;
+                border-right: 4000px solid transparent;
+                border-bottom: 500px solid #ffffff;
+                margin-bottom: -1px;
+            }
+
+            .right-bootm-radius {
+                position: absolute;
+                left: 50%;
+                bottom: 0px;
+                width: 0;
+                height: 0;
+                border-left: 4000px solid transparent;
+                border-bottom: 500px solid #ffffff;
+                margin-bottom: -1px;
+                overflow: hidden;
+            }
+
+
+            .startofbody{margin-top:5px; padding: 0 20px;}
+            
+            .subtitle{ font-size: 30px; color: #aaa;}
+            
+
+        /* --------------------------------------------------------------
+            TEMPLATE DETAILS
+        ----------------------------------------------------------------- */
+
+            .logo{
+                text-align: left;
+            }
+            img{
+                max-width: 100%;
+            }
+            .logo, .cta-container{
+                display:inline-block;
+                vertical-align: left;
+                float:none;
+            }
+            .cta p {
+                margin-bottom: 0;
+                font-size: 21px;
+                font-weight: 200;
+                color:#ffffff;
+            }
+
+            .block-two .thumbnail img {
+                max-width: 100%;
+            }
+            footer > div {
+                text-align:right;
+            }
+
+            /* Grey BG */
+            .grey{
+                background-color:#eee;
+            }
+
+        /* --------------------------------------------------------------
+            SPACING
+        ----------------------------------------------------------------- */
+
+            /* make element edge to edge */
+            .flush {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            /* vertical padding */
+            .vpadding {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            /* top padding only */
+            .tpadding {
+                padding-top: 20px;
+                padding-bottom: 0px;
+            }
+
+            /* bottom padding only */
+            .bpadding {
+                padding-top:0px;
+                padding-bottom:20px;
+            }
+
+            /* large vertical padding */
+            .vpaddingLG {
+                padding-top:50px;
+                padding-bottom:50px;
+            }
+
+            /* space below headings */
+            h1, h2, h3, h4, h5, h6 {
+                margin-bottom:15px;
+            }
+
+            /* space below paragraph */
+            p {
+                margin-bottom:20px;
+                color: #000;
+            }
+            
+            .leftside{padding: 0 75px 0 0;}
+
+        /* --------------------------------------------------------------
+            SOCIAL
+        ----------------------------------------------------------------- */
+
+            /* Social container spacing */
+            .social {
+                padding-top:15px;
+                line-height: 20px;
+                float: left;
+            }
+
+                /* Make everything within social display next to one another */
+                .social * {
+                    display:inline;
+                    line-height: 20px;
+                }
+
+            /* Social list spacing */
+            .social-list {
+                padding-left:10px;
+                margin:0px;
+            }
+
+                /* Social list display next to one another */
+                .social-list li{
+                    display:inline;
+                }
+                
+                /* Disable underlines on image link hover */
+                .social-list a:hover{
+                    text-decoration: none;
+                }
+
+            /* Share button image specific style */
+            #share-buttons img {
+                width: 20px;
+                border: 0;
+                box-shadow: 0;
+                display: inline;
+            }
+
+        /* --------------------------------------------------------------
+            RESPONSIVE
+        ----------------------------------------------------------------- */
+            /* xs */
+            @media(max-width:767px){
+                .pull-right{
+                    float: none !important;
+                    text-align: center;
+                }
+                .social{
+                    text-align: center;
+                    float: none;
+                }
+                .cta{
+                    padding-top: 20px;
+                    text-align: center;
+                }
+                .logo{
+                    width:100%;
+                    text-align: left;
+                }
+                .cta-container{
+                    width: 100%;
+                    color:#ffffff;
+
+                }
+
+                .cta p{
+                    margin-bottom: 0;
+                }
+                .jumbotron{
+                    margin-bottom: 0;
+                }
+                 .leftside{padding: 0 15px 0 15px;}
+                 
+            
+            }
+            /* sm */
+            @media(max-width:768px){
+                #pardot-form.label-left .field-label {
+                    width: 100%;
+                    text-align: left;
+                }
+                #pardot-form.label-left input.text, #pardot-form.label-left input.date, #pardot-form.label-left textarea, #pardot-form.label-left select {
+                    width: 100%;
+                }
+                #pardot-form.label-left span.value,
+                #pardot-form.label-left .description,
+                #pardot-form.label-left .no-label > *,
+                #pardot-form.label-left .submit,
+                #pardot-form.label-left .error.no-label {
+                    width: 100%;
+                }
+                #pardot-form.label-left span.value, #pardot-form.label-left .description, #pardot-form.label-left .no-label > *, #pardot-form.label-left .submit, #pardot-form.label-left .error.no-label {
+                    margin-left: 0;
+                }
+                form.form p {
+                    margin-left: 0px !important;
+                    padding-left:0px !important;
+                }
+            }
+           
+             @media(max-width:1200px){
+                  .hero-section h1{font-size: 50px;  line-height: 1.5;}
+            }
+           
+            @media(max-width:992px){
+                
+            }
+           
+            @media(max-width:600px){
+                 .pagetitles{margin-top: 10px;}
+                 .hero-section h1{font-size: 30px;  line-height: 1.5;}
+                 .hero-section h3 {font-size: 20px; line-height: 1.5 }
+                 
+            }
+        </style>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84497335-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84497335-1');
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N2TJ8KX');</script>
+<!-- End Google Tag Manager -->
+    </head>
+    <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5M3CNF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+
+<div class="beforeheader">
+	 <div class="py-15 px-15">
+	 	  <div class="col-sm-4">
+	 	  	<p>SG360 Webinars</p>
+	 	  </div>
+	 	  <div class="col-sm-4">
+	 	  	<p>&nbsp;</p>
+	 	  </div>
+	 	   <div class="col-sm-4">
+	 	  	<p>Email not displaying correctly?<br />
+	 	  	   Link to someplace how to do in Pardot	
+	 	  	</p>
+	 	  </div>
+	 </div>
+</div>
+   
+
+<header class="page-header hero-section" style="background-image: url('shutterstock_1357514348.jpg');">
+        <div class="page-header-content py-15">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center pagetitles">
+                         <div class="editable"><h1 pardot-region="page-maintitle">Thank you for attending!</h1></div>
+                    </div>
+                </div>
+	               
+            </div>
+        </div>
+</header>
+
+<div class="underheader">
+	<div class="page-header-content py-15">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                         <div class="editable"><h3 pardot-region="page-subtitle" class="subtitle">Take a 5-question survey and</h3></div>
+                    </div>
+                </div>
+	            
+	            <div class="row">
+                    <div class="col-md-2 text-center">
+                         <div class="editable"><img src="Registered Logo_Transparent BKG.png" width="80" alt="logo" placehold="logo" pardot-region="logo" pardot-region-type="image"></div>
+                    </div>
+                    <div class="col-md-8 text-center">
+                         <div class="editable"><h1 pardot-region="page-bigorangetitle" class="bigorangetitle">We'll send you a <br /> Starbucks Gift Card!</h1> </div>
+                    </div>
+                     <div class="col-md-2 text-center">
+                         <div class="nothing">&nbsp;</div>
+                    </div>
+                </div>
+	               
+            </div>
+        </div>
+</div>
+ 
+   
+  
+<div class="row startofbody">
+    <div class="container vpadding">
+        <div class="row vpadding">
+        	  <div class="col-md-6 leftside logoarea">
+        	
+            <div class="col-md-7 leftside logoarea">
+                <div class="editable">
+                    <h1 pardot-region="page-title">Discover why direct mail retargeting works so well.</h1>
+                </div>
+                <div class="editable" pardot-region="main-content">
+                   <p>Today's retargeting strategies rely primarily on a mix of email and display ads to re-engage those who have shown interest by visiting your website.</p>
+                   <p>However, as marketers look to increase the return on their retargeting efforts, they are encountering stagnating conversion rates as each of these channels struggle with their own set of challenges.</p>
+                   <p>As a result, more companies are turning to channels such as direct mail to drive this incremental growth.</p>
+                    <h4>In this eBook we:</h4>
+                    <ul>
+                        <li>Address the challenges impacting the success of today's retargeting strategies </li>
+                        <li>Share insights as to how direct mail overcomes these challenges </li>
+                        <li>Introduce direct mail retargeting - what it is, how it works, and how to integrate it into your current retargeting strategy</li>
+                      
+                    </ul>
+                </div>
+            </div><!-- div-md-8 -->
+            <div class="col-md-5">
+                <div class="editable">
+                    %%content%%
+                </div>
+               
+            </div>
+        </div><!-- row vpadding -->
+
+    </div><!--/.container-->
+ </div>
+ 
+    <div class="grey clearfix">
+        <div class="container vpadding">
+            <div class="row">
+                <footer>  
+                    <div class="col-sm-6 clearfix">
+                        <div class="social editable" pardot-region="social_text">
+                              <strong>Share This:</strong>
+                              <ul id="share-buttons" class="social-list">
+                                <!-- Facebook -->
+                                <li>
+                                    <a href="http://www.facebook.com/sharer.php?u=http://www.pardot.com" target="_blank">
+                                        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+                                    </a>
+                                </li>
+                                 <!-- Twitter -->
+                                <li>
+                                    <a href="https://twitter.com/share?url=http://www.pardot.com&amp;text=template-title" target="_blank">
+                                        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+                                    </a>
+                                </li>
+                                 <!-- LinkedIn -->
+                                <li>
+                                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.pardot.com" target="_blank">
+                                        <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />
+                                    </a>
+                                </li>
+                                <!-- Google+ -->
+                                <li>
+                                    <a href="https://plus.google.com/share?url=http://www.pardot.com" target="_blank">
+                                        <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
+                                    </a>
+                                </li>
+                                <!-- Email -->
+                                <li>
+                                    <a href="mailto:?Subject=template-title&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://www.pardot.com">
+                                        <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- social -->
+                    </div><!-- col-md-9 -->
+                    <div class="col-sm-6 clearfix">
+                        <div class="editable pull-right" pardot-region="footer_text">
+                            <p><a href="https://www.sg360.com/privacy-policy/">Privacy Policy </a>| &#169; 2020 SG360</a></p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        
+    </div><!-- grey -->
+
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+     <script>
+
+    /* --------------------------------------------------------------
+        FUNCTIONS
+    ----------------------------------------------------------------- */
+        /**
+         * Replace all occurences of https://simplesharebuttons.com in the
+         * social sharing list with the url of this page, and all occurrence
+         * of "Check this out" with the page title
+         */
+            $(".social-list a").each(function() {
+                // get values
+                var thisPage = window.location.href;
+                var url = $(this).attr('href');
+
+                // get title of this page
+                var title = $(document).find("title").text();
+              
+                // replace values
+                url = url.replace("http://www.pardot.com", thisPage);
+                url = url.replace("template-title", title);
+
+                //update value of the link anchor
+                $(this).attr('href', url);
+            });
+
+        /**
+         * Pardot label alignment fix
+         */
+            pardot.$(function() {
+                var $ = window.pardot.$;
+                // Add label-left class to the <form> if label alignment is set to Default or Left in form styling
+                var $labelAlignment = $('#pardot-form .field-label').css('float');
+                if ($labelAlignment == 'left') { $('#pardot-form').addClass('label-left'); }
+            });
+
+    </script>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N2TJ8KX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+ </body>
+</html>
